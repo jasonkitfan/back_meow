@@ -1,0 +1,14 @@
+Firebase setup
+1. npm install -g firebase-tools
+2. firebase login
+3. firebase init functions
+------------------------------------
+Install express
+npm i -s express
+------------------------------------
+Deploy
+firebaes deploy --only functions
+------------------------------------
+Set function location in hong kong
+exports.app = functions.region("asia-east2").https.onRequest(app);
+------------------------------------
