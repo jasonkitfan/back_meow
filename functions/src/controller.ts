@@ -42,15 +42,16 @@ const addEntry = async (req: Request, res: Response) => {
   }
 };
 
-const getAllEntries = async (req: Request, res: Response) => {
+const getCatList = async (req: Request, res: Response) => {
   try {
     const allEntries: EntryType[] = [];
-    const querySnapshot = await db.collection("entries").get();
+    const querySnapshot = await db.collection("adoption").get();
     querySnapshot.forEach((doc: any) => allEntries.push(doc.data()));
     return res.status(200).json(allEntries);
   } catch (error) {
     return res.status(500).send({
-      error_message: error,
+      status: "failed",
+      message: error,
     });
   }
 };
@@ -77,7 +78,8 @@ const updateEntries = async (req: Request, res: Response) => {
     });
   } catch (error) {
     return res.status(500).json({
-      error_message: error,
+      status: "failed",
+      message: error,
     });
   }
 };
@@ -100,4 +102,4 @@ const deleteEntry = async (req: Request, res: Response) => {
   }
 };
 
-export { addEntry, getAllEntries, updateEntries, deleteEntry };
+export { addEntry, getCatList, updateEntries, deleteEntry };

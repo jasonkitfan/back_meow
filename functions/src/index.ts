@@ -1,18 +1,20 @@
 import * as functions from "firebase-functions";
 import * as express from "express";
-import {
-  addEntry,
-  getAllEntries,
-  updateEntries,
-  deleteEntry,
-} from "./controller";
+import { addEntry, getCatList, updateEntries, deleteEntry } from "./controller";
 
 const app = express();
 
-app.get("/", (req, res) => res.status(200).send("hello"));
-app.post("/entries", addEntry);
-app.get("/entries", getAllEntries);
-app.patch("/entries/:entryId", updateEntries);
-app.delete("/entries/:entryId", deleteEntry);
+// Add CORS middleware
+app.use((req, res, next) => {
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE");
+  res.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+
+app.post("/shelter", addEntry);
+app.get("/shelter", getCatList);
+app.patch("/shelter/:entryId", updateEntries);
+app.delete("/shelter/:entryId", deleteEntry);
 
 exports.app = functions.region("asia-east2").https.onRequest(app);
