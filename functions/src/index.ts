@@ -1,6 +1,9 @@
 import * as functions from "firebase-functions";
 import * as express from "express";
-import { addEntry, getCatList, updateEntries, deleteEntry } from "./controller";
+import { addCat } from "./crud/addCat";
+import { getCat } from "./crud/getCat";
+import { updateCat } from "./crud/updateCat";
+import { deleteCat } from "./crud/deleteCat";
 
 const app = express();
 
@@ -12,9 +15,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post("/shelter", addEntry);
-app.get("/shelter", getCatList);
-app.patch("/shelter/:entryId", updateEntries);
-app.delete("/shelter/:entryId", deleteEntry);
+app.post("/shelter", addCat);
+app.get("/shelter", getCat);
+app.patch("/shelter/:entryId", updateCat);
+app.delete("/shelter/:entryId", deleteCat);
 
 exports.app = functions.region("asia-east2").https.onRequest(app);

@@ -8,8 +8,10 @@ admin.initializeApp({
     clientEmail: functions.config().client.email,
   }),
   databaseURL: "https://meow-shelter.firebaseio.com",
+  storageBucket: "gs://meow-shelter.appspot.com",
 });
 
 const db = admin.firestore();
+// const storage = admin.storage().bucket();
 
 export { admin, db };
