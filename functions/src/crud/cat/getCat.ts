@@ -5,7 +5,12 @@ import { Request, EntryType } from "../../config/interface";
 const getCat = async (req: Request, res: Response) => {
   try {
     const allEntries: EntryType[] = [];
-    const querySnapshot = await db.collection("adoption").get();
+
+    const querySnapshot = await db
+      .collection("cat")
+      .orderBy("createAt", "desc")
+      .get();
+
     querySnapshot.forEach((doc: any) => allEntries.push(doc.data()));
     return res.status(200).json(allEntries);
   } catch (error) {

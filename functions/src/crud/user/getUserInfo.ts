@@ -21,6 +21,7 @@ const getUserInfo = async (req: AuthRequest, res: Response) => {
     return res.status(200).send({
       name: userData.name,
       email: userData.email,
+      role: userData.role,
     });
   } catch (error) {
     console.error("Error getting user data:", error);

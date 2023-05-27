@@ -6,7 +6,7 @@ const addCat = async (req: Request, res: Response) => {
   const { name, breed, gender, dateOfBirth, imageUrl } = req.body;
 
   try {
-    const entry = db.collection("adoption").doc();
+    const entry = db.collection("cat").doc();
     const entryObject = {
       id: entry.id,
       name: name,
