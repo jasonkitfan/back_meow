@@ -19,6 +19,7 @@ const addCat = async (req: Request, res: Response) => {
       adoptable: true,
     };
 
+    // Set path and convert base 64 image
     const destinationPath = `cats/${entry.id}.jpg`;
     const bucket = admin.storage().bucket();
     const base64Data = imageUrl.replace(

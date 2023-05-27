@@ -12,6 +12,5 @@ admin.initializeApp({
 });
 
 const db = admin.firestore();
-// const storage = admin.storage().bucket();
 
 export { admin, db };

@@ -4,6 +4,8 @@ import { addCat } from "./crud/addCat";
 import { getCat } from "./crud/getCat";
 import { updateCat } from "./crud/updateCat";
 import { deleteCat } from "./crud/deleteCat";
+import { updateUserRole } from "./crud/updateUserRole";
+import { validUser } from "./validation/user";
 
 const app = express();
 
@@ -19,5 +21,6 @@ app.post("/shelter", addCat);
 app.get("/shelter", getCat);
 app.patch("/shelter/:entryId", updateCat);
 app.delete("/shelter/:entryId", deleteCat);
+app.post("/shelter/userRole", validUser, updateUserRole);
 
 exports.app = functions.region("asia-east2").https.onRequest(app);
