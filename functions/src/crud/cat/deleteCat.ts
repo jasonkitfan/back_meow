@@ -1,6 +1,6 @@
 import { Response } from "express";
-import { db } from "../config/firebase";
-import { Request } from "../config/interface";
+import { db } from "../../config/firebase";
+import { Request } from "../../config/interface";
 
 const deleteCat = async (req: Request, res: Response) => {
   const { entryId } = req.params;

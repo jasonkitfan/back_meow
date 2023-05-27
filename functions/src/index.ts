@@ -1,11 +1,13 @@
 import * as functions from "firebase-functions";
 import * as express from "express";
-import { addCat } from "./crud/addCat";
-import { getCat } from "./crud/getCat";
-import { updateCat } from "./crud/updateCat";
-import { deleteCat } from "./crud/deleteCat";
-import { updateUserRole } from "./crud/updateUserRole";
+import { addCat } from "./crud/cat/addCat";
+import { getCat } from "./crud/cat/getCat";
+import { updateCat } from "./crud/cat/updateCat";
+import { deleteCat } from "./crud/cat/deleteCat";
+import { updateUserRole } from "./crud/user/updateUserRole";
 import { validUser } from "./validation/user";
+import updateUserInfo from "./crud/user/updateUserInfo";
+import getUserInfo from "./crud/user/getUserInfo";
 
 const app = express();
 
@@ -21,6 +23,9 @@ app.post("/shelter", addCat);
 app.get("/shelter", getCat);
 app.patch("/shelter/:entryId", updateCat);
 app.delete("/shelter/:entryId", deleteCat);
+
 app.post("/shelter/userRole", validUser, updateUserRole);
+app.post("/shelter/userInfo", validUser, updateUserInfo);
+app.get("/shelter/userInfo", validUser, getUserInfo);
 
 exports.app = functions.region("asia-east2").https.onRequest(app);

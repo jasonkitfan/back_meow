@@ -1,10 +1,9 @@
 import { Response } from "express";
-import { admin, db } from "../config/firebase";
-import { Request } from "../config/interface";
+import { admin, db } from "../../config/firebase";
+import { Request } from "../../config/interface";
 
 const addCat = async (req: Request, res: Response) => {
   const { name, breed, gender, dateOfBirth, imageUrl } = req.body;
-  console.log(req.body);
 
   try {
     const entry = db.collection("adoption").doc();

@@ -1,6 +1,6 @@
 import { Response } from "express";
-import { db } from "../config/firebase";
-import { AuthRequest } from "../validation/user";
+import { db } from "../../config/firebase";
+import { AuthRequest } from "../../validation/user";
 
 const updateUserRole = async (req: AuthRequest, res: Response) => {
   const uid = req.uid;
@@ -10,7 +10,10 @@ const updateUserRole = async (req: AuthRequest, res: Response) => {
   let newRole: string;
   const findCode = await db.collection("code").where("code", "==", code).get();
   if (findCode.docs.length === 0) {
-    return res.status(404).send("Code not found");
+    return res.status(404).send({
+      status: "failed",
+      message: "Code not found",
+    });
   } else {
     const doc = findCode.docs[0];
     newRole = doc.data().role;
@@ -23,7 +26,6 @@ const updateUserRole = async (req: AuthRequest, res: Response) => {
     .get()
     .then((querySnapshot) => {
       if (querySnapshot.empty) {
-        console.log("No matching documents");
         return res.status(404).send({
           status: "failed",
           message: "No matching documents",
@@ -35,14 +37,13 @@ const updateUserRole = async (req: AuthRequest, res: Response) => {
         docRef
           .update(updateData)
           .then(() => {
-            console.log("Document successfully updated!");
             return res.status(200).send({
               status: "success",
-              message: "Document successfully updated!",
+              message: "Role successfully updated!",
+              role: newRole,
             });
           })
           .catch((error) => {
-            console.error("Error updating document: ", error);
             return res.status(500).send({
               status: "failed",
               message: error.message,
@@ -51,7 +52,6 @@ const updateUserRole = async (req: AuthRequest, res: Response) => {
       }
     })
     .catch((error) => {
-      console.log("Error getting documents: ", error);
       return res.status(500).send({
         status: "failed",
         message: error.message,

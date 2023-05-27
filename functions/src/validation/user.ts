@@ -10,6 +10,7 @@ const validUser = async (
   res: Response,
   next: NextFunction
 ) => {
+  console.log("validating user");
   try {
     const authHeader = req.headers.authorization;
     const token = authHeader?.split(" ")[1];
@@ -19,6 +20,7 @@ const validUser = async (
         .verifyIdToken(token)
         .then((decodedToken) => {
           req.uid = decodedToken.uid;
+          console.log("valid user");
           next();
         })
         .catch((error) => {

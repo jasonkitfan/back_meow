@@ -1,6 +1,6 @@
 import { Response } from "express";
-import { db } from "../config/firebase";
-import { Request, EntryType } from "../config/interface";
+import { db } from "../../config/firebase";
+import { Request, EntryType } from "../../config/interface";
 
 const getCat = async (req: Request, res: Response) => {
   try {
