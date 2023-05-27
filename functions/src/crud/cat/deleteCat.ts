@@ -3,10 +3,11 @@ import { db } from "../../config/firebase";
 import { Request } from "../../config/interface";
 
 const deleteCat = async (req: Request, res: Response) => {
+  console.log("start deleting cat");
   const { entryId } = req.params;
 
   try {
-    const entry = db.collection("entries").doc(entryId);
+    const entry = db.collection("cat").doc(entryId);
     await entry.delete();
 
     return res.status(200).json({

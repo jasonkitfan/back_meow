@@ -19,10 +19,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post("/shelter", addCat);
+app.post("/shelter", validUser, addCat);
 app.get("/shelter", getCat);
-app.patch("/shelter/:entryId", updateCat);
-app.delete("/shelter/:entryId", deleteCat);
+app.post("/shelter/modifyCat", validUser, updateCat);
+app.delete("/shelter/:entryId", validUser, deleteCat);
 
 app.post("/shelter/userRole", validUser, updateUserRole);
 app.post("/shelter/userInfo", validUser, updateUserInfo);

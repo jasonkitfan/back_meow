@@ -1,4 +1,5 @@
 export type EntryType = {
+  id: string;
   name: string;
   breed: string;
   gender: string;
