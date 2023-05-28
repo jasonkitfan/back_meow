@@ -8,6 +8,7 @@ import { updateUserRole } from "./crud/user/updateUserRole";
 import { validUser } from "./validation/user";
 import updateUserInfo from "./crud/user/updateUserInfo";
 import getUserInfo from "./crud/user/getUserInfo";
+import { adoptCat } from "./crud/cat/adoptCat";
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use((req, res, next) => {
 app.post("/shelter", validUser, addCat);
 app.get("/shelter", getCat);
 app.post("/shelter/modifyCat", validUser, updateCat);
+app.post("/shelter/adoptCat", validUser, adoptCat);
 app.delete("/shelter/:entryId", validUser, deleteCat);
 
 app.post("/shelter/userRole", validUser, updateUserRole);

@@ -5,6 +5,7 @@ export type EntryType = {
   gender: string;
   dateOfBirth: string;
   imageUrl: string;
+  pickUpdate?: string;
 };
 
 export type Request = {
