@@ -14,3 +14,15 @@ export type Request = {
     entryId: string;
   };
 };
+
+export type AdoptionRecord = {
+  catBreed: string;
+  catDob: string;
+  catGender: string;
+  catId: string;
+  catImageUrl: string;
+  catName: string;
+  catPickUpDate: string;
+  createAt: number;
+  pickUpOwner: string;
+};

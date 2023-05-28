@@ -9,6 +9,7 @@ import { validUser } from "./validation/user";
 import updateUserInfo from "./crud/user/updateUserInfo";
 import getUserInfo from "./crud/user/getUserInfo";
 import { adoptCat } from "./crud/cat/adoptCat";
+import { getAdoptionRecord } from "./crud/cat/getAdoptionRecord";
 
 const app = express();
 
@@ -20,12 +21,19 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post("/shelter", validUser, addCat);
+// new visitor
 app.get("/shelter", getCat);
-app.post("/shelter/modifyCat", validUser, updateCat);
+
+// registed user
 app.post("/shelter/adoptCat", validUser, adoptCat);
+app.get("/shelter/adoptCat", validUser, getAdoptionRecord);
+
+// employee
+app.post("/shelter", validUser, addCat);
+app.post("/shelter/modifyCat", validUser, updateCat);
 app.delete("/shelter/:entryId", validUser, deleteCat);
 
+// all registed user
 app.post("/shelter/userRole", validUser, updateUserRole);
 app.post("/shelter/userInfo", validUser, updateUserInfo);
 app.get("/shelter/userInfo", validUser, getUserInfo);

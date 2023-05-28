@@ -35,6 +35,7 @@ const adoptCat = async (req: AuthRequest, res: Response) => {
       catImageUrl: req.body.imageUrl,
       catPickUpDate: req.body.pickUpDate,
       pickUpOwner: req.uid,
+      createAt: Date.now(),
     };
     console.log(newRecord);
 
