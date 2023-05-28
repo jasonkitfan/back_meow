@@ -11,13 +11,6 @@ const handlePayment = async (req: Request, res: Response) => {
   try {
     const { amount, paymentMethodId } = req.body;
 
-    // const paymentIntent = await stripe.paymentIntents.create({
-    //     amount: amount,
-    //     currency: "hkd",
-    //     payment_method: paymentMethodId,
-    //     confirm: true,
-    //   });
-
     await stripe.paymentIntents.create({
       amount: amount,
       currency: "hkd",

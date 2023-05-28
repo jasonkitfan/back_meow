@@ -11,6 +11,7 @@ import getUserInfo from "./crud/user/getUserInfo";
 import { adoptCat } from "./crud/cat/adoptCat";
 import { getAdoptionRecord } from "./crud/cat/getAdoptionRecord";
 import { handlePayment } from "./payment/stripePayment";
+import { getBreedInfo } from "./catBreedDetection/zyla";
 
 const app = express();
 
@@ -41,5 +42,8 @@ app.delete("/shelter/:entryId", validUser, deleteCat);
 app.post("/shelter/userRole", validUser, updateUserRole);
 app.post("/shelter/userInfo", validUser, updateUserInfo);
 app.get("/shelter/userInfo", validUser, getUserInfo);
+
+// identify cat breed
+app.post("/shelter/identifyBreed", validUser, getBreedInfo);
 
 exports.app = functions.region("asia-east2").https.onRequest(app);
