@@ -10,6 +10,7 @@ import updateUserInfo from "./crud/user/updateUserInfo";
 import getUserInfo from "./crud/user/getUserInfo";
 import { adoptCat } from "./crud/cat/adoptCat";
 import { getAdoptionRecord } from "./crud/cat/getAdoptionRecord";
+import { handlePayment } from "./payment/stripePayment";
 
 const app = express();
 
@@ -23,6 +24,9 @@ app.use((req, res, next) => {
 
 // new visitor
 app.get("/shelter", getCat);
+
+// stripe payment
+app.post("/shelter/donate", handlePayment);
 
 // registed user
 app.post("/shelter/adoptCat", validUser, adoptCat);

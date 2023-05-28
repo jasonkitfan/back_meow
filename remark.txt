@@ -12,3 +12,12 @@ firebaes deploy --only functions
 Set function location in hong kong
 exports.app = functions.region("asia-east2").https.onRequest(app);
 ------------------------------------
+stripe payment set up:
+// install the stripe library
+npm install stripe
+
+//set the secret key on firebase
+firebase functions:config:set stripe.secret_key={replace your stripe secrete key}
+
+//view the current config
+firebase functions:config:get
