@@ -24,15 +24,15 @@ const validUser = async (
           next();
         })
         .catch((error) => {
-          return res.status(500).send({
+          return res.status(401).send({
             status: "failed",
-            message: "invalid token",
+            message: "Invalid token",
           });
         });
     } else {
-      return res.status(500).send({
+      return res.status(401).send({
         status: "failed",
-        message: "missing token",
+        message: "Missing token",
       });
     }
   } catch (e) {
