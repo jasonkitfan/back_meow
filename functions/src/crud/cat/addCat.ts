@@ -2,10 +2,19 @@ import { Response } from "express";
 import { admin, db } from "../../config/firebase";
 import { Request } from "../../config/interface";
 
+/**
+ * Adds a new cat to the database and uploads its image to Cloud Storage, then sends a JSON response to the client with the status and data of the new cat.
+ * @async
+ * @function
+ * @param {Request} req - The HTTP request object.
+ * @param {Response} res - The HTTP response object.
+ * @returns {Promise<void>}
+ */
 const addCat = async (req: Request, res: Response) => {
   const { name, breed, gender, dateOfBirth, imageUrl } = req.body;
 
   try {
+    // Create a new entry in the "cat" collection with the cat's information
     const entry = db.collection("cat").doc();
     const entryObject = {
       id: entry.id,

@@ -5,8 +5,16 @@ const zylaEndPoint =
   "https://zylalabs.com/api/499/cat+breed+classification+api/373/pet+classification";
 const zylaApiKey = "1314|0PIkHvWAP3ks7tDea5BUnLVkOEQWEPXbx0SAPZJp";
 
+/**
+ * Calls the Zyla API with the specified image URL and returns the response data.
+ * @async
+ * @function
+ * @param {string} image - The URL of the image to analyze.
+ * @returns {Promise<Object>} - The response data from the Zyla API.
+ */
 const callZylaApi = async (image: string) => {
   try {
+    // Call the Zyla API with the given image URL
     const response = await fetch(`${zylaEndPoint}?url=${image}`, {
       method: "POST",
       headers: {
@@ -15,10 +23,12 @@ const callZylaApi = async (image: string) => {
       },
     });
 
+    // Check if the response is OK, throw an error if not
     if (!response.ok) {
       throw new Error(`Failed to call Zyla API with status ${response.status}`);
     }
 
+    // Parse the response data as JSON and return it
     const data = await response.json();
     console.log("Zyla API response: ");
     return data;
