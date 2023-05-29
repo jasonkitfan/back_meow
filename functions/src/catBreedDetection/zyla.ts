@@ -1,9 +1,6 @@
 import { admin } from "../config/firebase";
 import { Request, Response } from "express";
-
-const zylaEndPoint =
-  "https://zylalabs.com/api/499/cat+breed+classification+api/373/pet+classification";
-const zylaApiKey = "1314|0PIkHvWAP3ks7tDea5BUnLVkOEQWEPXbx0SAPZJp";
+import { zylaApiKey, zylaEndPoint } from "./config";
 
 /**
  * Calls the Zyla API with the specified image URL and returns the response data.
