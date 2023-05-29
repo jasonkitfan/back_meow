@@ -21,3 +21,6 @@ firebase functions:config:set stripe.secret_key={replace your stripe secrete key
 
 //view the current config
 firebase functions:config:get
+------------------------------------
+api documentation set up
+npm install swagger-ui-express @types/swagger-ui-express

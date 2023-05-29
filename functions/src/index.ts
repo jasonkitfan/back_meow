@@ -1,5 +1,5 @@
 import * as functions from "firebase-functions";
-import * as express from "express";
+import express from "express";
 import { addCat } from "./crud/cat/addCat";
 import { getCat } from "./crud/cat/getCat";
 import { updateCat } from "./crud/cat/updateCat";
@@ -12,8 +12,11 @@ import { adoptCat } from "./crud/cat/adoptCat";
 import { getAdoptionRecord } from "./crud/cat/getAdoptionRecord";
 import { handlePayment } from "./payment/stripePayment";
 import { getBreedInfo } from "./catBreedDetection/zyla";
+import { serve, setup } from "swagger-ui-express";
+import YAML from "yamljs";
 
 const app = express();
+const swaggerDocument = YAML.load("src/documentation/openai.yaml");
 
 // Add CORS middleware
 app.use((req, res, next) => {
@@ -22,6 +25,13 @@ app.use((req, res, next) => {
   res.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
 });
+
+// set up documentation
+app.use("/api-docs", serve);
+app.get(
+  "/api-docs",
+  setup(swaggerDocument, { swaggerOptions: { url: "/api-docs" } })
+);
 
 // new visitor
 app.get("/shelter", getCat);
