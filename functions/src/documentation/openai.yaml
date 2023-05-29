@@ -444,3 +444,65 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalServerError'
+  /shelter/email:
+    post:
+      summary: Send an email to the shelter.
+      requestBody:
+        description: The details of the email to send.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the sender.
+                  example: John Doe
+                email:
+                  type: string
+                  format: email
+                  description: The email address of the sender.
+                  example: john.doe@example.com
+                content:
+                  type: string
+                  description: The content of the email.
+                  example: Hello, I would like to adopt a cat.
+              required:
+                - name
+                - email
+                - content
+      responses:
+        '200':
+          description: The email was successfully sent.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: The status of the email sending operation.
+                    example: success
+                  message:
+                    type: string
+                    description: A message describing the result of the email sending operation.
+                    example: Your message has been sent to the shelter.
+        '500':
+          description: The email could not be sent.
+          content:
+            application/json:
+              schema:
+               type: object
+                properties:
+                  status:
+                    type: string
+                    description: The status of the email sending operation.
+                    example: failed
+                  message:
+                    type: string
+                    description: A message describing the result of the email sending operation.
+                    example: Unable to send your message.
+      tags:
+        - All Visitor
+      operationId: sendEmail

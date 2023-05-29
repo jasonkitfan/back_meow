@@ -14,6 +14,7 @@ import { handlePayment } from "./payment/stripePayment";
 import { getBreedInfo } from "./catBreedDetection/zyla";
 import { serve, setup } from "swagger-ui-express";
 import YAML from "yamljs";
+import { sendEmail } from "./smtp/sendEmail";
 
 const app = express();
 const swaggerDocument = YAML.load("src/documentation/openai.yaml");
@@ -33,8 +34,9 @@ app.get(
   setup(swaggerDocument, { swaggerOptions: { url: "/api-docs" } })
 );
 
-// new visitor
+// every visitor
 app.get("/shelter", getCat);
+app.post("/shelter/email", sendEmail);
 
 // stripe payment
 app.post("/shelter/donate", handlePayment);

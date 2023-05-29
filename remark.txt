@@ -24,3 +24,8 @@ firebase functions:config:get
 ------------------------------------
 api documentation set up
 npm install swagger-ui-express @types/swagger-ui-express
+------------------------------------
+send email set up
+npm install nodemailer
+npm i --save-dev @types/nodemailer
+------------------------------------
