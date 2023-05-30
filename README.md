@@ -1,7 +1,7 @@
 # Cat Shelter Backend Documentation
 
 # Update:
-The subscription so Zyla API is canceled after taking the demonstration video. Any user try to call the endpoint will return "unknow" breed
+The subscription to Zyla API is canceled after taking the demonstration video. Any user try to call the endpoint will return "unknow" breed
 
 ## Project Overview
 
